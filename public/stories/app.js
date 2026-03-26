@@ -139,7 +139,13 @@ async function downloadSlide(slide, titulo, btn) {
   btn.textContent = 'Gerando…';
   try {
     const blob = await captureSlide(slide);
-    saveAs(blob, `story_${slugify(titulo)}.png`);
+    const filename = `story_${slugify(titulo)}.png`;
+    const file = new File([blob], filename, { type: 'image/png' });
+    if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      await navigator.share({ files: [file], title: titulo });
+    } else {
+      saveAs(blob, filename);
+    }
   } finally {
     btn.disabled = false;
     btn.textContent = '⬇ Baixar PNG';
