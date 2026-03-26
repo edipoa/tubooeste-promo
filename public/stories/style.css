@@ -1,0 +1,384 @@
+/* ============================================================
+   Tubo Oeste — Stories Export
+   Slides 1080×1920 escalados para preview
+============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+  --red:       #c00000;
+  --red-dark:  #8b0000;
+  --yellow:    #FFD700;
+  --white:     #ffffff;
+  --scale:     0.29;  /* 1080 * 0.29 ≈ 313px | 1920 * 0.29 ≈ 557px */
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Open Sans', Arial, sans-serif;
+  background: #f1f5f9;
+  color: #1e293b;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Topbar ──────────────────────────────────────────────── */
+.topbar {
+  background: var(--red);
+  padding: 12px 20px;
+  position: sticky; top: 0; z-index: 50;
+  box-shadow: 0 2px 8px rgba(192,0,0,.3);
+}
+
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.topbar-logo {
+  height: 48px; width: auto;
+  mix-blend-mode: screen;
+  filter: brightness(1.2);
+}
+
+.topbar-sub {
+  font-size: .85rem;
+  color: rgba(255,255,255,.75);
+}
+
+.btn-zip {
+  background: var(--yellow);
+  color: var(--red-dark);
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: .82rem;
+  font-weight: 800;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: opacity .2s;
+}
+
+.btn-zip:hover  { opacity: .85; }
+.btn-zip:disabled { opacity: .55; cursor: not-allowed; }
+
+/* ── Nav bar ─────────────────────────────────────────────── */
+.nav-bar {
+  background: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 60px;
+  z-index: 40;
+  box-shadow: 0 1px 3px rgba(0,0,0,.07);
+}
+
+.nav-inner {
+  display: flex;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 16px;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: .82rem;
+  font-weight: 700;
+  color: #475569;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+  white-space: nowrap;
+}
+
+.nav-item svg { width: 16px; height: 16px; flex-shrink: 0; }
+.nav-item:hover  { color: #c00000; }
+.nav-item.active { color: #c00000; border-bottom-color: #c00000; }
+
+/* ── Container ───────────────────────────────────────────── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 60px;
+}
+
+.page-hint {
+  font-size: .875rem;
+  color: #64748b;
+  margin-bottom: 24px;
+}
+
+.empty-msg {
+  color: #64748b;
+  font-size: .9rem;
+  padding: 32px 0;
+}
+
+/* ── Grid ────────────────────────────────────────────────── */
+.stories-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+/* ── Card wrapper ────────────────────────────────────────── */
+.story-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.story-card-label {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  color: #475569;
+  text-align: center;
+  max-width: 313px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-download {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: .8rem;
+  font-weight: 700;
+  padding: 8px 20px;
+  cursor: pointer;
+  width: 100%;
+  max-width: 313px;
+  transition: background .2s;
+}
+
+.btn-download:hover    { background: var(--red-dark); }
+.btn-download:disabled { opacity: .55; cursor: not-allowed; }
+
+/* ── Slide wrapper (viewport visual) ────────────────────── */
+.story-wrap {
+  width:  313px;   /* 1080 × 0.29 */
+  height: 557px;   /* 1920 × 0.29 */
+  overflow: hidden;
+  position: relative;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0,0,0,.18);
+  flex-shrink: 0;
+}
+
+/* ── Slide real 1080×1920 escalado ──────────────────────── */
+.story-slide {
+  width:  1080px;
+  height: 1920px;
+  transform: scale(0.29);
+  transform-origin: top left;
+  position: absolute;
+  top: 0; left: 0;
+  background: #c00000;
+  background: linear-gradient(160deg, #c00000 0%, #8b0000 100%);
+  font-family: 'Open Sans', Arial, sans-serif;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pontilhado de fundo */
+.story-slide::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: radial-gradient(circle, rgba(255,255,255,.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Header do slide ─────────────────────────────────────── */
+.sl-header {
+  position: relative; z-index: 1;
+  display: flex;
+  justify-content: center;
+  padding: 80px 60px 40px;
+}
+
+.sl-logo {
+  height: 120px; width: auto;
+  mix-blend-mode: screen;
+  filter: brightness(1.2);
+}
+
+/* ── Corpo do slide ──────────────────────────────────────── */
+.sl-body {
+  position: relative; z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 80px 40px;
+  gap: 40px;
+}
+
+/* Badge */
+.sl-badge {
+  background: var(--yellow);
+  color: var(--red-dark);
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 44px;
+  font-weight: 900;
+  letter-spacing: .18em;
+  padding: 16px 64px;
+  border-radius: 100px;
+  text-transform: uppercase;
+}
+
+/* Imagem do produto */
+.sl-img-wrap {
+  width: 700px;
+  height: 700px;
+  background: rgba(255,255,255,.12);
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-shadow: 0 0 0 3px rgba(255,255,255,.15), 0 40px 100px rgba(0,0,0,.4);
+}
+
+.sl-img {
+  max-width: 100%; max-height: 100%;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+/* Título */
+.sl-titulo {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 88px;
+  font-weight: 900;
+  color: var(--white);
+  text-align: center;
+  line-height: 1.1;
+  text-shadow: 0 4px 24px rgba(0,0,0,.4);
+}
+
+.sl-titulo.sem-img {
+  font-size: 108px;
+}
+
+/* Preço */
+.sl-preco-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.sl-de {
+  font-size: 52px;
+  color: rgba(255,255,255,.6);
+  text-decoration: line-through;
+}
+
+.sl-por-row {
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+}
+
+.sl-por-label {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 60px;
+  font-weight: 700;
+  color: var(--yellow);
+  text-transform: uppercase;
+}
+
+.sl-por {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 160px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+  text-shadow: 0 0 80px rgba(255,255,255,.2), 0 4px 32px rgba(0,0,0,.4);
+}
+
+/* Descrição (banner) */
+.sl-descricao {
+  font-size: 60px;
+  color: rgba(255,255,255,.85);
+  text-align: center;
+  line-height: 1.45;
+}
+
+/* Validade */
+.sl-validade {
+  font-size: 40px;
+  color: rgba(255,255,255,.55);
+  border: 2px solid rgba(255,255,255,.25);
+  padding: 14px 48px;
+  border-radius: 100px;
+  letter-spacing: .06em;
+}
+
+/* ── Rodapé fixo ─────────────────────────────────────────── */
+.sl-footer {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(0,0,0,.55), transparent);
+  padding: 60px 80px 80px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.sl-wpp-icon {
+  width: 80px; height: 80px;
+  background: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.sl-wpp-icon svg {
+  width: 48px; height: 48px;
+}
+
+.sl-wpp-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sl-wpp-label {
+  font-size: 36px;
+  color: rgba(255,255,255,.6);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.sl-wpp-num {
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 58px;
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: .04em;
+}

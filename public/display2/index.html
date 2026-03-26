@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tubo Oeste — TV Promoções</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;800;900&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/display2/style.css">
+</head>
+<body>
+
+  <div id="display" class="display">
+
+    <!-- ── Slide: Produto com imagem ───────────────────── -->
+    <div id="slide-produto" class="slide slide-produto">
+
+      <!-- Coluna esquerda: vermelho + imagem -->
+      <div class="col-img">
+        <img src="/logo.png" alt="Tubo Oeste" class="slide-logo">
+        <div class="img-wrap">
+          <img id="prod-img" src="" alt="" class="prod-img">
+        </div>
+        <div class="oferta-badge">OFERTA</div>
+      </div>
+
+      <!-- Coluna direita: info -->
+      <div class="col-info">
+        <p id="prod-categoria" class="prod-categoria"></p>
+        <h1 id="prod-titulo" class="prod-titulo"></h1>
+        <div class="divider"></div>
+        <div class="preco-wrap" id="preco-wrap">
+          <p class="de-label">De: <span id="prod-de" class="prod-de"></span></p>
+          <div class="por-row">
+            <span class="por-label">Por</span>
+            <span id="prod-por" class="prod-por"></span>
+          </div>
+        </div>
+        <p id="prod-desc" class="prod-desc"></p>
+        <p id="prod-validade" class="prod-validade"></p>
+      </div>
+
+    </div>
+
+    <!-- ── Slide: Banner texto ─────────────────────────── -->
+    <div id="slide-banner" class="slide slide-banner">
+      <img src="/logo.png" alt="Tubo Oeste" class="slide-logo banner-logo">
+      <div class="banner-content">
+        <div class="banner-tag">NOVIDADE</div>
+        <h1 id="banner-titulo" class="banner-titulo"></h1>
+        <p id="banner-desc" class="banner-desc"></p>
+        <p id="banner-validade" class="banner-validade"></p>
+      </div>
+    </div>
+
+    <!-- ── Slide: Apenas preço (sem imagem) ────────────── -->
+    <div id="slide-preco" class="slide slide-preco">
+      <img src="/logo.png" alt="Tubo Oeste" class="slide-logo">
+      <div class="preco-center">
+        <div class="oferta-badge big">OFERTA ESPECIAL</div>
+        <h1 id="spreco-titulo" class="spreco-titulo"></h1>
+        <div class="divider light"></div>
+        <div class="spreco-preco-wrap" id="spreco-preco-wrap">
+          <p class="sde-label">De: <span id="spreco-de" class="spreco-de"></span></p>
+          <div class="spor-row">
+            <span class="spor-label">Por</span>
+            <span id="spreco-por" class="spreco-por"></span>
+          </div>
+        </div>
+        <p id="spreco-desc" class="spreco-desc"></p>
+        <p id="spreco-validade" class="spreco-validade"></p>
+      </div>
+    </div>
+
+    <!-- ── Fallback ─────────────────────────────────────── -->
+    <div id="slide-fallback" class="slide slide-fallback active">
+      <img src="/logo.png" alt="Tubo Oeste" class="fallback-logo">
+      <p class="fallback-tagline">Tudo para a sua construção,<br>do básico ao acabamento.</p>
+      <div class="fallback-pills">
+        <span class="pill">Tubos e Conexões</span>
+        <span class="pill">Cimento</span>
+        <span class="pill">Ferramentas</span>
+        <span class="pill">Material Hidráulico</span>
+        <span class="pill">Piso e Revestimento</span>
+      </div>
+      <p class="fallback-city">Chapecó — SC</p>
+    </div>
+
+    <!-- ── Footer ───────────────────────────────────────── -->
+    <footer class="slide-footer" id="slide-footer" style="display:none">
+      <div id="dots" class="dots"></div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="/display2/app.js"></script>
+</body>
+</html>

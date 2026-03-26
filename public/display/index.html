@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tubo Oeste — Promoções</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/display/style.css">
+</head>
+<body>
+
+  <!-- Tela principal (carrossel) -->
+  <div id="display" class="display">
+
+    <!-- Slide produto -->
+    <div id="slide-produto" class="slide slide-produto" aria-live="polite">
+      <div class="slide-produto-img-wrap">
+        <img id="prod-img" src="" alt="" class="prod-img">
+      </div>
+      <div class="slide-produto-info">
+        <div class="slide-logo-row">
+          <img src="/logo.png" alt="Tubo Oeste" class="slide-logo">
+          <span class="slide-tag">OFERTA</span>
+        </div>
+        <h1 id="prod-titulo" class="prod-titulo"></h1>
+        <div class="prod-preco-wrap" id="prod-preco-wrap">
+          <span class="prod-de" id="prod-de"></span>
+          <span class="prod-por" id="prod-por"></span>
+        </div>
+        <p class="prod-validade" id="prod-validade"></p>
+      </div>
+    </div>
+
+    <!-- Slide banner texto -->
+    <div id="slide-banner" class="slide slide-banner" aria-live="polite">
+      <div class="banner-content">
+        <div class="slide-logo-row centered">
+          <img src="/logo.png" alt="Tubo Oeste" class="slide-logo">
+        </div>
+        <h1 id="banner-titulo" class="banner-titulo"></h1>
+        <p id="banner-descricao" class="banner-descricao"></p>
+        <p class="banner-validade" id="banner-validade"></p>
+      </div>
+    </div>
+
+    <!-- Tela fallback (sem promoções) -->
+    <div id="slide-fallback" class="slide slide-fallback">
+      <div class="fallback-content">
+        <img src="/logo.png" alt="Tubo Oeste" class="fallback-logo">
+        <p class="fallback-sub">Materiais de Construção</p>
+        <div class="fallback-divider"></div>
+        <p class="fallback-city">Chapecó — SC</p>
+      </div>
+    </div>
+
+    <!-- Indicadores + barra de progresso -->
+    <div class="slide-footer" id="slide-footer">
+      <div id="dots" class="dots"></div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/display/app.js"></script>
+</body>
+</html>
