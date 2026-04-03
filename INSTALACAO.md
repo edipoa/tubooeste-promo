@@ -60,6 +60,23 @@ chmod +x /etc/local.d/tubooeste-promo.start
 rc-update add local default
 ```
 
+### 7. Impedir a tela de apagar (DPMS)
+
+A tela apaga por inatividade do X11. Para desativar isso permanentemente, adicione ao final do script `/etc/local.d/tubooeste-promo.start`, antes do `node server.js &`:
+
+```sh
+# Desativa proteção de tela e DPMS (evita a tela apagar)
+DISPLAY=:0 xset s off
+DISPLAY=:0 xset -dpms
+DISPLAY=:0 xset s noblank
+```
+
+Ou rode manualmente sempre que abrir o display:
+
+```sh
+xset s off && xset -dpms && xset s noblank
+```
+
 ---
 
 ## Uso
