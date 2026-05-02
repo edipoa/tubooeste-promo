@@ -152,8 +152,58 @@ async function downloadSlide(slide, titulo, btn) {
   }
 }
 
+/* ── Blob → base64 ───────────────────────────────────────── */
+function blobToBase64(blob) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload  = () => resolve(reader.result);
+    reader.onerror = reject;
+    reader.readAsDataURL(blob);
+  });
+}
+
+/* ── Publicar individual no Instagram ───────────────────── */
+async function publicarInstagram(slide, titulo, btn) {
+  btn.disabled = true;
+  btn.textContent = 'Capturando…';
+  try {
+    const blob   = await captureSlide(slide);
+    const png    = await blobToBase64(blob);
+    btn.textContent = 'Publicando…';
+
+    const res  = await fetch('/api/instagram/publicar', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body:    JSON.stringify({ png, nome: `story_${slugify(titulo)}` }),
+    });
+    const data = await res.json();
+
+    if (data.ok) {
+      btn.textContent = '✅ Publicado';
+      btn.classList.add('btn-ig--ok');
+      setTimeout(() => {
+        btn.textContent = '📤 Instagram';
+        btn.classList.remove('btn-ig--ok');
+        btn.disabled = false;
+      }, 3000);
+    } else {
+      throw new Error(data.error || 'Erro desconhecido');
+    }
+  } catch (err) {
+    btn.textContent = '❌ Erro';
+    btn.classList.add('btn-ig--err');
+    btn.title = err.message;
+    setTimeout(() => {
+      btn.textContent = '📤 Instagram';
+      btn.classList.remove('btn-ig--err');
+      btn.disabled = false;
+      btn.title = '';
+    }, 4000);
+  }
+}
+
 /* ── Download todos em ZIP ───────────────────────────────── */
-async function downloadAll(cards, promos) {
+async function downloadAll(cards) {
   const btn = document.getElementById('btn-zip');
   btn.disabled = true;
   btn.textContent = 'Gerando ZIP…';
@@ -173,18 +223,52 @@ async function downloadAll(cards, promos) {
   btn.textContent = '⬇ Baixar todos (ZIP)';
 }
 
+/* ── Publicar todos no Instagram ─────────────────────────── */
+async function publicarTodos(cards) {
+  const btn = document.getElementById('btn-ig-all');
+  btn.disabled = true;
+  let erros = 0;
+
+  for (let i = 0; i < cards.length; i++) {
+    const { slide, promo } = cards[i];
+    btn.textContent = `Publicando ${i + 1}/${cards.length}…`;
+    try {
+      const blob = await captureSlide(slide);
+      const png  = await blobToBase64(blob);
+      const res  = await fetch('/api/instagram/publicar', {
+        method:  'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify({ png, nome: `story_${slugify(promo.titulo)}` }),
+      });
+      const data = await res.json();
+      if (!data.ok) erros++;
+    } catch {
+      erros++;
+    }
+  }
+
+  if (erros === 0) {
+    btn.textContent = '✅ Todos publicados';
+  } else {
+    btn.textContent = `⚠️ ${erros} erro(s)`;
+  }
+  setTimeout(() => {
+    btn.textContent = '📤 Publicar todos';
+    btn.disabled = false;
+  }, 4000);
+}
+
 /* ── Renderiza grid ──────────────────────────────────────── */
 function renderGrid(promos) {
   const grid    = document.getElementById('grid');
   const emptyEl = document.getElementById('empty-msg');
-  const zipBtn  = document.getElementById('btn-zip');
 
   if (promos.length === 0) {
     emptyEl.style.display = 'block';
     return;
   }
 
-  zipBtn.style.display = 'inline-block';
+  document.getElementById('topbar-actions').style.display = 'flex';
   const cards = [];
 
   promos.forEach(p => {
@@ -201,20 +285,32 @@ function renderGrid(promos) {
     label.className = 'story-card-label';
     label.textContent = p.titulo;
 
-    const btn = document.createElement('button');
-    btn.className = 'btn-download';
-    btn.textContent = '⬇ Baixar PNG';
-    btn.addEventListener('click', () => downloadSlide(slide, p.titulo, btn));
+    const actions = document.createElement('div');
+    actions.className = 'card-actions';
+
+    const btnDown = document.createElement('button');
+    btnDown.className = 'btn-download';
+    btnDown.textContent = '⬇ Baixar PNG';
+    btnDown.addEventListener('click', () => downloadSlide(slide, p.titulo, btnDown));
+
+    const btnIg = document.createElement('button');
+    btnIg.className = 'btn-ig';
+    btnIg.textContent = '📤 Instagram';
+    btnIg.addEventListener('click', () => publicarInstagram(slide, p.titulo, btnIg));
+
+    actions.appendChild(btnDown);
+    actions.appendChild(btnIg);
 
     card.appendChild(wrap);
     card.appendChild(label);
-    card.appendChild(btn);
+    card.appendChild(actions);
     grid.appendChild(card);
 
     cards.push({ slide, promo: p });
   });
 
-  document.getElementById('btn-zip').addEventListener('click', () => downloadAll(cards, promos));
+  document.getElementById('btn-zip').addEventListener('click', () => downloadAll(cards));
+  document.getElementById('btn-ig-all').addEventListener('click', () => publicarTodos(cards));
 }
 
 /* ── Init ─────────────────────────────────────────────────── */

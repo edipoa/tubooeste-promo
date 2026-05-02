@@ -153,23 +153,63 @@ body {
   text-overflow: ellipsis;
 }
 
+.card-actions {
+  display: flex;
+  gap: 8px;
+  width: 100%;
+  max-width: 313px;
+}
+
+.btn-download,
+.btn-ig {
+  flex: 1;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: .78rem;
+  font-weight: 700;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: background .2s, opacity .2s;
+  white-space: nowrap;
+}
+
 .btn-download {
   background: var(--red);
+  color: #fff;
+}
+.btn-download:hover    { background: var(--red-dark); }
+.btn-download:disabled { opacity: .55; cursor: not-allowed; }
+
+.btn-ig {
+  background: #833ab4;
+  color: #fff;
+}
+.btn-ig:hover     { background: #6a2f94; }
+.btn-ig:disabled  { opacity: .55; cursor: not-allowed; }
+.btn-ig--ok  { background: #16a34a !important; }
+.btn-ig--err { background: #dc2626 !important; }
+
+.btn-ig-all {
+  background: #833ab4;
   color: #fff;
   border: none;
   border-radius: 8px;
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: .8rem;
-  font-weight: 700;
-  padding: 8px 20px;
+  font-size: .82rem;
+  font-weight: 800;
+  padding: 8px 16px;
   cursor: pointer;
-  width: 100%;
-  max-width: 313px;
-  transition: background .2s;
+  transition: opacity .2s;
 }
+.btn-ig-all:hover    { opacity: .85; }
+.btn-ig-all:disabled { opacity: .55; cursor: not-allowed; }
 
-.btn-download:hover    { background: var(--red-dark); }
-.btn-download:disabled { opacity: .55; cursor: not-allowed; }
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
 /* ── Slide wrapper (viewport visual) ────────────────────── */
 .story-wrap {

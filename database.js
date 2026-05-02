@@ -11,7 +11,6 @@ const db = new sqlite3.Database(DB_PATH, err => {
   console.log('[DB] Banco inicializado em', DB_PATH);
 });
 
-// Helpers que retornam Promises para usar com async/await
 db.runAsync = (sql, params = []) =>
   new Promise((resolve, reject) =>
     db.run(sql, params, function (err) {
@@ -50,9 +49,24 @@ async function initDB() {
       criado_em     TEXT    NOT NULL DEFAULT (datetime('now'))
     )
   `);
-  // Migração: adiciona coluna descricao se o banco já existia sem ela
   await db.runAsync(`ALTER TABLE promocoes ADD COLUMN descricao TEXT`)
-    .catch(() => {}); // ignora se coluna já existe
+    .catch(() => {});
+
+  await db.runAsync(`
+    CREATE TABLE IF NOT EXISTS usuarios (
+      id        INTEGER PRIMARY KEY AUTOINCREMENT,
+      username  TEXT NOT NULL UNIQUE,
+      password  TEXT NOT NULL,
+      criado_em TEXT NOT NULL DEFAULT (datetime('now'))
+    )
+  `);
+
+  await db.runAsync(`
+    CREATE TABLE IF NOT EXISTS config (
+      chave TEXT PRIMARY KEY,
+      valor TEXT NOT NULL
+    )
+  `);
 }
 
 module.exports = { db, initDB };

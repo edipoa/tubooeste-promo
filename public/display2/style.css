@@ -42,7 +42,7 @@ html, body {
 .slide-logo {
   position: absolute;
   top: 28px; left: 40px;
-  height: 56px; width: auto;
+  height: 80px; width: auto;
   mix-blend-mode: screen;
   filter: brightness(1.2);
   z-index: 10;
@@ -106,10 +106,10 @@ html, body {
   background: var(--yellow);
   color: var(--red-dark);
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(.8rem, 1.2vw, 1.1rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
   font-weight: 900;
   letter-spacing: .2em;
-  padding: 8px 32px;
+  padding: 10px 36px;
   border-radius: 100px;
   text-transform: uppercase;
   box-shadow: 0 4px 20px rgba(0,0,0,.3);
@@ -120,8 +120,8 @@ html, body {
 .oferta-badge.big {
   position: static;
   transform: none;
-  font-size: clamp(1rem, 1.6vw, 1.4rem);
-  padding: 10px 40px;
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
+  padding: 12px 48px;
   margin-bottom: 24px;
 }
 
@@ -147,7 +147,7 @@ html, body {
 }
 
 .prod-categoria {
-  font-size: clamp(.7rem, 1vw, .9rem);
+  font-size: clamp(1rem, 1.4vw, 1.4rem);
   font-weight: 600;
   color: var(--red);
   letter-spacing: .15em;
@@ -156,7 +156,7 @@ html, body {
 
 .prod-titulo {
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(1.6rem, 3.2vw, 3rem);
+  font-size: clamp(2rem, 4vw, 4.5rem);
   font-weight: 900;
   color: #1a0000;
   line-height: 1.15;
@@ -178,7 +178,7 @@ html, body {
 }
 
 .de-label {
-  font-size: clamp(.85rem, 1.2vw, 1.1rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
   color: #888;
 }
 
@@ -195,7 +195,7 @@ html, body {
 
 .por-label {
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  font-size: clamp(1.4rem, 2.2vw, 2rem);
   font-weight: 700;
   color: var(--red);
   text-transform: uppercase;
@@ -203,20 +203,20 @@ html, body {
 
 .prod-por {
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-size: clamp(4rem, 8vw, 8rem);
   font-weight: 900;
   color: var(--red);
   line-height: 1;
 }
 
 .prod-desc {
-  font-size: clamp(.85rem, 1.2vw, 1.1rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
   color: #444;
   line-height: 1.5;
 }
 
 .prod-validade {
-  font-size: clamp(.75rem, 1vw, .95rem);
+  font-size: clamp(1rem, 1.4vw, 1.4rem);
   color: #888;
   margin-top: 4px;
 }
@@ -262,17 +262,17 @@ html, body {
   background: var(--yellow);
   color: var(--red-dark);
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(.8rem, 1.2vw, 1.1rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
   font-weight: 900;
   letter-spacing: .2em;
-  padding: 8px 32px;
+  padding: 10px 36px;
   border-radius: 100px;
   text-transform: uppercase;
 }
 
 .banner-titulo {
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(2.4rem, 5.5vw, 5.2rem);
+  font-size: clamp(3.2rem, 7vw, 7rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1.15;
@@ -280,17 +280,17 @@ html, body {
 }
 
 .banner-desc {
-  font-size: clamp(1.1rem, 2vw, 1.8rem);
+  font-size: clamp(1.5rem, 2.8vw, 2.6rem);
   color: rgba(255,255,255,.88);
   line-height: 1.55;
-  max-width: 750px;
+  max-width: 900px;
 }
 
 .banner-validade {
-  font-size: clamp(.8rem, 1.1vw, 1rem);
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
   color: rgba(255,255,255,.6);
   border: 1px solid rgba(255,255,255,.3);
-  padding: 6px 20px;
+  padding: 8px 24px;
   border-radius: 100px;
   letter-spacing: .08em;
 }
@@ -329,7 +329,7 @@ html, body {
 
 .spreco-titulo {
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(2rem, 4.5vw, 4.2rem);
+  font-size: clamp(2.8rem, 6vw, 6rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1.15;
@@ -344,7 +344,7 @@ html, body {
 }
 
 .sde-label {
-  font-size: clamp(.9rem, 1.4vw, 1.2rem);
+  font-size: clamp(1.2rem, 1.8vw, 1.8rem);
   color: rgba(255,255,255,.65);
 }
 
@@ -361,7 +361,7 @@ html, body {
 
 .spor-label {
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  font-size: clamp(1.6rem, 2.8vw, 2.6rem);
   font-weight: 700;
   color: var(--yellow);
   text-transform: uppercase;
@@ -369,7 +369,7 @@ html, body {
 
 .spreco-por {
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(4rem, 9vw, 8rem);
+  font-size: clamp(5.5rem, 12vw, 12rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1;
@@ -379,16 +379,16 @@ html, body {
 }
 
 .spreco-desc {
-  font-size: clamp(.95rem, 1.5vw, 1.4rem);
+  font-size: clamp(1.3rem, 2vw, 2rem);
   color: rgba(255,255,255,.8);
   line-height: 1.5;
 }
 
 .spreco-validade {
-  font-size: clamp(.8rem, 1.1vw, 1rem);
+  font-size: clamp(1.1rem, 1.5vw, 1.4rem);
   color: rgba(255,255,255,.55);
   border: 1px solid rgba(255,255,255,.25);
-  padding: 6px 20px;
+  padding: 8px 24px;
   border-radius: 100px;
 }
 
@@ -413,7 +413,7 @@ html, body {
 }
 
 .fallback-logo {
-  height: clamp(80px, 14vw, 160px);
+  height: clamp(110px, 18vw, 200px);
   width: auto;
   mix-blend-mode: screen;
   filter: brightness(1.2);
@@ -422,7 +422,7 @@ html, body {
 
 .fallback-tagline {
   font-family: 'Poppins', Arial, sans-serif;
-  font-size: clamp(1.4rem, 3vw, 2.8rem);
+  font-size: clamp(1.9rem, 4vw, 4rem);
   font-weight: 700;
   color: var(--white);
   text-align: center;
@@ -433,23 +433,23 @@ html, body {
 .fallback-pills {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 14px;
   justify-content: center;
   position: relative; z-index: 1;
 }
 
 .pill {
-  font-size: clamp(.75rem, 1.1vw, 1rem);
+  font-size: clamp(1rem, 1.5vw, 1.4rem);
   font-weight: 600;
   color: var(--white);
   background: rgba(255,255,255,.15);
   border: 1px solid rgba(255,255,255,.3);
-  padding: 8px 22px;
+  padding: 10px 28px;
   border-radius: 100px;
 }
 
 .fallback-city {
-  font-size: clamp(.85rem, 1.2vw, 1.1rem);
+  font-size: clamp(1.1rem, 1.6vw, 1.6rem);
   color: rgba(255,255,255,.55);
   letter-spacing: .12em;
   text-transform: uppercase;
