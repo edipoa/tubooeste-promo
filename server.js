@@ -5,7 +5,6 @@ const fs          = require('fs');
 const session     = require('express-session');
 const SQLiteStore = require('connect-sqlite3')(session);
 const bcrypt      = require('bcrypt');
-const ngrok       = require('@ngrok/ngrok');
 const cron        = require('node-cron');
 
 const DEV = process.env.NODE_ENV !== 'production';
@@ -113,25 +112,41 @@ app.use('/api/instagram', requireAuth, instagramRouter);
 // Raiz → admin
 app.get('/', (req, res) => res.redirect('/admin'));
 
-// ── Inicia ngrok automaticamente ──────────────────────────
-async function startNgrok() {
-  const token = process.env.NGROK_AUTHTOKEN;
-  if (!token) {
-    console.log('  [ngrok] NGROK_AUTHTOKEN não definido — ngrok desativado');
+// ── Inicia tunnel (localtunnel) ───────────────────────────
+async function startTunnel() {
+  if (process.env.TUNNEL_DISABLED === 'true') {
+    console.log('  [tunnel] desativado via TUNNEL_DISABLED=true');
     return;
   }
-  try {
-    const listener = await ngrok.forward({ addr: PORT, authtoken: token });
-    const url = listener.url();
-    await db.runAsync(
-      `INSERT INTO config (chave, valor) VALUES ('ngrok_url', ?)
-       ON CONFLICT(chave) DO UPDATE SET valor = excluded.valor`,
-      [url]
-    );
-    console.log(`  ngrok:    ${url}`);
-  } catch (err) {
-    console.error('  [ngrok] Erro ao iniciar:', err.message);
+  const localtunnel = require('localtunnel');
+  const subdomain   = process.env.TUNNEL_SUBDOMAIN || undefined;
+
+  async function connect() {
+    try {
+      const tunnel = await localtunnel({ port: PORT, subdomain });
+      const url = tunnel.url;
+
+      await db.runAsync(
+        `INSERT INTO config (chave, valor) VALUES ('ngrok_url', ?)
+         ON CONFLICT(chave) DO UPDATE SET valor = excluded.valor`,
+        [url]
+      );
+      console.log(`  tunnel:   ${url}`);
+
+      tunnel.on('close', () => {
+        console.warn('  [tunnel] conexão encerrada — reconectando em 5s...');
+        setTimeout(connect, 5000);
+      });
+      tunnel.on('error', (err) => {
+        console.error('  [tunnel] erro:', err.message);
+      });
+    } catch (err) {
+      console.error('  [tunnel] falha ao conectar:', err.message, '— tentando novamente em 10s');
+      setTimeout(connect, 10000);
+    }
   }
+
+  await connect();
 }
 
 // ── Boot ──────────────────────────────────────────────────
@@ -147,7 +162,7 @@ initDB().then(async () => {
     console.log(`  Setup:    http://localhost:${PORT}/setup  (apenas 1ª vez)`);
   });
 
-  await startNgrok();
+  await startTunnel();
 
   // Verifica/renova token do Instagram diariamente às 03:00
   cron.schedule('0 3 * * *', renovarToken);
