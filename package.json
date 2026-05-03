@@ -1,27 +1,30 @@
 {
-  "name": "tubooeste-promo",
-  "version": "1.0.0",
-  "description": "Sistema de promoções para TV — Tubo Oeste",
+  "name": "promovix-api",
+  "version": "2.0.0",
+  "description": "Promovix — API SaaS multi-tenant para display TV e stories",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon --ignore uploads/ --ignore sessions.db --ignore '*.sqlite' server.js"
+    "dev": "nodemon server.js",
+    "migrate": "node migrate.js"
   },
   "dependencies": {
-    "@ngrok/ngrok": "^1.7.0",
+    "@google/generative-ai": "^0.24.1",
     "bcrypt": "^6.0.0",
-    "connect-sqlite3": "^0.9.16",
+    "cloudinary": "^2.5.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
     "dotenv": "^16.6.1",
     "express": "^4.18.3",
-    "express-session": "^1.19.0",
+    "groq-sdk": "^1.1.2",
+    "jsonwebtoken": "^9.0.2",
     "multer": "^2.1.1",
     "node-cron": "^4.2.1",
-    "sqlite3": "^6.0.1",
+    "pg": "^8.13.3",
+    "puppeteer": "^24.42.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
-    "connect-livereload": "^0.6.1",
-    "livereload": "^0.10.3",
     "nodemon": "^3.1.14"
   }
 }
